@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>musicloop</title>
+  </head>
+  <body>
+    <p></p>
+    <button id="addTrack">Add Track</button>
+    <button id="start">Start Recording</button>
+    <button id="stop">Stop Recording</button>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script>
+        var socket = io();
+        var chunks = [];
+
+        var constraints = {audio: true, video: {width: 1280, height: 720}};
+
+        navigator.mediaDevices.getUserMedia(constraints)
+        .then(function(mediaStream) {
+          var mediaRecorder = new MediaRecorder(mediaStream);
+
+          document.getElementById("start").onclick = function() {
+
+            function delay(callback) {
+              var i = 3;
+              var interval = window.setInterval(function() {
+                callback(i);
+                i--;
+                if (i === -1) { window.clearInterval(interval); }
+              }, 1000);
+            }
+
+            delay(function(val) {
+              document.querySelector("p").innerHTML =  val > 0 ? val : "";
+              console.log(val);
+            });
+
+            //mediaRecorder.start();
+            //console.log("recording started");
+
+          };
+
+          document.getElementById("stop").onclick = function() {
+            mediaRecorder.stop();
+            console.log("recording stopped");
+          };
+
+          mediaRecorder.onstop = function(e) {
+            var video = document.createElement("video");
+            video.width = 360;
+            video.height = 240;
+            video.autoplay = true;
+            video.loop = true;
+            document.body.appendChild(video);
+
+            var blob = new Blob(chunks, {'type': 'video\/mp4'});
+            chunks = [];
+            var videoURL = URL.createObjectURL(blob);
+            video.src = videoURL;
+            console.log("done");
+          }
+
+          mediaRecorder.ondataavailable = function(e) {
+            chunks.push(e.data);
+          }
+        })
+        .catch(function(err){ console.log(err.name + " " + err.message); });
+    </script>
+  </body>
+</html>
