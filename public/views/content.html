@@ -1,15 +1,52 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>musicloop 2</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css">
+
+    <title>musicloop</title>
   </head>
   <body>
-    <p></p>
-    <video width="360" height="240" id="liveVideo" muted></video>
-    <button id="addTrack">Add Track</button>
-    <button id="start">Start Recording</button>
-    <button id="stop">Stop Recording</button>
+
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <a class="navbar-brand" href="/">musicloop</a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBarContent" aria-controls="navBarContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <div class="collapse navbar-collapse" id="navBarContent">
+        <ul class="navbar-nav mr-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="/content">Create</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/">About</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <div class="container-fluid mt-3">
+      <div class="container-fluid">
+        <span id="delay"></span>
+        <div class="row">
+          <div class="col">
+            <button id="start" class="btn btn-dark btn-block">Record New Track</button>
+          </div>
+          <div class="col">
+            <button id="stop" class="btn btn-dark btn-block">Stop Recording</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="container-fluid" id="videoContainer">
+        <video width="360" height="240" id="liveVideo" muted></video>
+      </div>
+    </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="../scripts/index.js"></script>

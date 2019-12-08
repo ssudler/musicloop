@@ -25,12 +25,17 @@ navigator.mediaDevices.getUserMedia(constraints)
           window.clearInterval(interval);
           mediaRecorder.start();
           console.log("recording started");
+
+          var allVids = document.querySelectorAll("video");
+          allVids.forEach(function(v) {
+            v.play();
+          });
         }
       }, 1000);
     }
 
     delay(function(val) {
-      document.querySelector("p").innerHTML =  val > 0 ? val : "";
+      document.getElementById("delay").innerHTML =  val > 0 ? val : "";
       console.log(val);
     });
   };
@@ -45,14 +50,19 @@ navigator.mediaDevices.getUserMedia(constraints)
     video.width = 360;
     video.height = 240;
     video.autoplay = true;
-    video.loop = true;
-    document.body.appendChild(video);
+
+    document.getElementById("videoContainer").insertBefore(video, document.getElementById("liveVideo"));
 
     var blob = new Blob(chunks, {'type': 'video\/mp4'});
     chunks = [];
     var videoURL = URL.createObjectURL(blob);
     video.src = videoURL;
     console.log("done");
+
+    var newVids = document.querySelectorAll("video");
+    newVids.forEach(function(v) {
+      v.play();
+    });
   }
 
   mediaRecorder.ondataavailable = function(e) {
