@@ -7,51 +7,60 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
     <link rel="stylesheet" href="../css/styles.css">
 
+    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
     <title>musicloop</title>
   </head>
   <body>
+    <div class="container-fluid d-flex flex-column p-0 h-100">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <a class="navbar-brand" href="/">musicloop</a>
 
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="/">musicloop</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBarContent" aria-controls="navBarContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
 
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navBarContent" aria-controls="navBarContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
+        <div class="collapse navbar-collapse" id="navBarContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="/content">Create</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="/">About</a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-      <div class="collapse navbar-collapse" id="navBarContent">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item">
-            <a class="nav-link" href="/content">Create</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="/">About</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
-
-    <div class="container-fluid mt-3">
-      <div class="container-fluid">
-        <span id="delay"></span>
-        <div class="row">
-          <div class="col">
-            <button id="start" class="btn btn-dark btn-block">Record New Track</button>
+      <div class="container-fluid mt-3" id="appContainer">
+        <div class="container-fluid">
+          <span id="delay"></span>
+          <div class="row">
+            <div class="col">
+              <button id="start" class="btn btn-dark btn-block">Record New Track</button>
+            </div>
+            <div class="col">
+              <button id="stop" class="btn btn-dark btn-block">Stop Recording</button>
+            </div>
           </div>
-          <div class="col">
-            <button id="stop" class="btn btn-dark btn-block">Stop Recording</button>
-          </div>
+        </div>
+
+        <div class="container-fluid" id="videoContainer">
+          <video width="360" height="240" id="liveVideo" muted><span>bruh</span></video>
         </div>
       </div>
 
-      <div class="container-fluid" id="videoContainer">
-        <video width="360" height="240" id="liveVideo" muted></video>
+      <div class="container-fluid mt-3 d-flex h-100 flex-column" id="loadContainer">
+        <div class="spinner-border align-self-center" role="status">
+          <span class="sr-only"></span>
+        </div>
       </div>
+
     </div>
 
     <script src="/socket.io/socket.io.js"></script>
     <script src="../scripts/index.js"></script>
-    <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
   </body>
 </html>

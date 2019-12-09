@@ -9,6 +9,9 @@ navigator.mediaDevices.getUserMedia(constraints)
   var liveVideo = document.getElementById("liveVideo");
   liveVideo.srcObject = mediaStream;
   liveVideo.onloadedmetadata = function(e) {
+    console.log("loaded");
+    $("#loadContainer").remove();
+    $("#appContainer").show();
     liveVideo.play();
   }
 
