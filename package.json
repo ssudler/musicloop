@@ -1,5 +1,5 @@
 {
-  "name": "LoopMe",
+  "name": "musicloop",
   "version": "0.0.1",
   "description": "Video/audio looper",
   "dependencies": {
